@@ -6,4 +6,6 @@ public class Voto
 	private int voto;
 	private String corso;
 	private LocalDate data; //alternative obsolete: date, calendar
+	
+	
 }
