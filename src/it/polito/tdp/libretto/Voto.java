@@ -18,6 +18,19 @@ public class Voto
 
 	public void setPunti(int punti) {
 		this.punti = punti;
+		this.voto = voto;
+		this.corso = corso;
+		this.data = data;
+	}
+	
+	private int voto;
+	public int getVoto() {
+		return voto;
+	}
+
+
+	public void setVoto(int voto) {
+		this.voto = voto;
 	}
 
 
@@ -50,6 +63,38 @@ public class Voto
 	public String toString() {
 		return punti + " " + corso + " " + data.toString();
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((corso == null) ? 0 : corso.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Voto other = (Voto) obj;
+		if (corso == null) {
+			if (other.corso != null)
+				return false;
+		} else if (!corso.equals(other.corso))
+			return false;
+		return true;
+	}
+	
+	
+	
+	
+
 	
 	
 	
