@@ -44,6 +44,15 @@ public class Voto
 	private String corso;
 	private LocalDate data; //alternative obsolete: date, calendar
 	
+	//TODO cambiare formattazione
+	
+	@Override
+	public String toString() {
+		return voto + " " + corso + " " + data.toString();
+	}
+	
+	
+	
 	
 
 	
