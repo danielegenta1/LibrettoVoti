@@ -5,19 +5,19 @@ public class Voto
 {
 	public Voto(int voto, String corso, LocalDate data) {
 		super();
-		this.voto = voto;
+		this.punti = voto;
 		this.corso = corso;
 		this.data = data;
 	}
 	
-	private int voto;
-	public int getVoto() {
-		return voto;
+	private int punti;
+	public int getPunti() {
+		return punti;
 	}
 
 
-	public void setVoto(int voto) {
-		this.voto = voto;
+	public void setPunti(int punti) {
+		this.punti = punti;
 	}
 
 
@@ -48,7 +48,7 @@ public class Voto
 	
 	@Override
 	public String toString() {
-		return voto + " " + corso + " " + data.toString();
+		return punti + " " + corso + " " + data.toString();
 	}
 	
 	
