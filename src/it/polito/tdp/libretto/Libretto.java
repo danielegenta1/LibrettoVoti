@@ -63,14 +63,22 @@ public class Libretto
 	 * @param nomeEsame nome del corso da ricercare
 	 * @return il {@link Voto} corrispondente, oppure {@code null} se non esiste
 	 */
-	public Voto cercaEsami(String nomeEsame)
+	public Voto cercaEsame(String nomeEsame)
 	{
-		for (Voto v :this.voti)
+		//M1
+		/*for (Voto v :this.voti)
 		{
 			if (v.getCorso().equals(nomeEsame))
 				return v;
-		}
-		return null;
+		}*/
+		
+		//meglio, non mi prendo carico della complessità, ma utilizzo metodo apposito
+		Voto voto = new Voto(0, nomeEsame, null); //oggetto voto fasullo
+		int pos = this.voti.indexOf(voto);
+		if (pos == -1)
+			return null;
+		else
+			return this.voti.get(pos);
 	}
 	
 	/**
@@ -80,12 +88,21 @@ public class Libretto
 	 */
 	public boolean esisteGiaVoto(Voto v)
 	{
-		Voto trovato = this.cercaEsami(v.getCorso());
+		//meglio
+		int pos = this.voti.indexOf(v);
+		if (pos == -1)
+			return false;
+		else
+			return v.getPunti() == this.voti.get(pos).getPunti();
+		
+		/*
+		Voto trovato = this.cercaEsame(v.getCorso());
 		if (trovato == null)
 			return false;
 		if (trovato.getPunti() == v.getPunti())
 			return true;
 		else
 			return false;
+		*/
 	}
 }
