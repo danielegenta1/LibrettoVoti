@@ -1,0 +1,108 @@
+package it.polito.tdp.libretto;
+
+import java.time.LocalDate;
+import java.util.*;
+
+public class Libretto 
+{
+	private List<Voto> voti;
+	
+	public Libretto()
+	{
+		this.voti = new ArrayList<Voto>();
+	}
+	
+	//m1
+	/*public void add(int voto, String corso, LocalDate data) 
+	{
+		
+	}*/
+	
+	//m2 - meglio (per modifiche future...)
+	/**
+	 * Aggiunge nuovo voto al libretto
+	 * @param v il {@link Voto} da aggiungere
+	 */
+	public void add(Voto v) 
+	{
+		voti.add(v);
+	}
+	
+	/*
+	public void stampaVoti(int voto)
+	{
+		
+	}
+	
+	public String stampaVoti2(int voto)
+	{
+		
+	}
+	*/
+	
+	//m3 - meglio
+	/**
+	 * Seleziona il sottoinsieme di voti che hanno il punteggio specificato
+	 * @param punti punteggio da ricercare
+	 * @return lista di {@link Voto} aventi quel punteggio (eventualmente vuota)
+	 */
+	public List<Voto> cercaVoti(int punti) 
+	{
+		List<Voto> result = new ArrayList<Voto>();
+		for (Voto v : this.voti)
+		{
+			//non sto creando alcun oggetto nuovo, copio solamente la ref. in una lista (op. leggera)
+			if (v.getPunti() == punti)
+				result.add(v);
+		}
+		return result;
+	}
+	
+	/**
+	 * Ricerca un {@link Voto} relativo al corso di cui è specificato il nome
+	 * @param nomeEsame nome del corso da ricercare
+	 * @return il {@link Voto} corrispondente, oppure {@code null} se non esiste
+	 */
+	public Voto cercaEsame(String nomeEsame)
+	{
+		//M1
+		/*for (Voto v :this.voti)
+		{
+			if (v.getCorso().equals(nomeEsame))
+				return v;
+		}*/
+		
+		//meglio, non mi prendo carico della complessità, ma utilizzo metodo apposito
+		Voto voto = new Voto(0, nomeEsame, null); //oggetto voto fasullo
+		int pos = this.voti.indexOf(voto);
+		if (pos == -1)
+			return null;
+		else
+			return this.voti.get(pos);
+	}
+	
+	/**
+	 * Dato un {lLink Voto}, determina se esiste già un voto con uguale corso e punteggio
+	 * @param v
+	 * @return {@code true}, se ha trovato un corso e punteggio uguali,  {@code false} se non ha trovato corso o lo ha trovato con un voto diverso
+	 */
+	public boolean esisteGiaVoto(Voto v)
+	{
+		//meglio
+		int pos = this.voti.indexOf(v);
+		if (pos == -1)
+			return false;
+		else
+			return v.getPunti() == this.voti.get(pos).getPunti();
+		
+		/*
+		Voto trovato = this.cercaEsame(v.getCorso());
+		if (trovato == null)
+			return false;
+		if (trovato.getPunti() == v.getPunti())
+			return true;
+		else
+			return false;
+		*/
+	}
+}
