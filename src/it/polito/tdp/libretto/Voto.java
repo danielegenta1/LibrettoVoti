@@ -3,7 +3,9 @@ import java.time.LocalDate;
 
 public class Voto
 {
-	public Voto(int voto, String corso, LocalDate data) {
+	public Voto(int voto, String corso, LocalDate data)
+	{
+		super();
 		this.punti = voto;
 		this.corso = corso;
 		this.data = data;
@@ -90,22 +92,8 @@ public class Voto
 		return true;
 	}
 	
-	
-	
-	
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-
-	
-	
-	
+	public Voto clone() {
+		return new Voto(this.punti, this.corso, this.data) ;
+	}
 	
 }

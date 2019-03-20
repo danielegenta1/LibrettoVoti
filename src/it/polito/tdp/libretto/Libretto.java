@@ -118,7 +118,7 @@ public class Libretto
 	 * Se il voto non esiste non c'è conflitto, se esiste ed ha punteggio diverso c'è conflitto
 	 * @param v
 	 * @return {@code true} se il voto esiste ed ha un punteggio diverso,
-	 * 			{code false} se il voto non eiste, oppure esiste ma ha lo stesso punteggio
+	 * 			{@code false} se il voto non eiste, oppure esiste ma ha lo stesso punteggio
 	 */
 	public boolean votoInConflitto(Voto v)
 	{
@@ -135,5 +135,44 @@ public class Libretto
 		return this.voti.toString();
 	}
 	
+	public Libretto LibrettoMigliorato()
+	{
+		Libretto nuovo = new Libretto();
+		for (Voto v : this.voti)
+			//senza istanza new, nuovo e vecchio hanno stesse referenze, così invece creo clone indipendente
+			//clone è un metodo di factory (fa new)
+		{
+			nuovo.add(v.clone());
+		}
+		for (Voto v : nuovo.voti)
+		{
+			int punti = v.getPunti();
+			if (punti < 24)
+				punti = punti + 1;
+			else if (punti <= 28)
+				punti = punti + 2;
+			v.setPunti(punti);
+		}
+		return nuovo;
+	}
+	
+	public void cancellaVotiScarsi()
+	{
+		//non posso cancellare elementi mentre itero
+		/*
+		for (Voto v : this.voti)
+		{
+			if (v.getPunti() < 24)
+				this.voti.remove(v);
+		}
+		*/
+		List<Voto> cancellare = new ArrayList<Voto>();
+		for (Voto v : this.voti)
+		{
+			if (v.getPunti() < 24)
+				cancellare.add(v);
+		}
+		this.voti.removeAll(cancellare);
+	}
 	
 }
